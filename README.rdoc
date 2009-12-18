@@ -54,6 +54,10 @@ Set your own name
 
 Set your own format
   :format => "strftime format"
+OR
+  :format => :us # US based time format (month-day-Year)
+OR
+  :format => :world # Generalised time format (day-month-Year)
   
 Convenience method "formatted_column_name" is created, unless specified with :as
 
