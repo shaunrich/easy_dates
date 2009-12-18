@@ -1,0 +1,87 @@
+= Easy Dates
+
+Easy date formatting for ActiveRecord. This gem keeps your models clean, and you don't have to worry about formatting your dates continually with strftime.
+
+== Install
+
+  gem install gemcutter
+  gem tumble
+  gem install easy_dates 
+  
+or it can be installed as a rails plugin.
+
+  script/plugin install git://github.com/platform45/easy_dates.git
+  
+== Usage
+
+Define your date setup with define_easy_dates.
+
+  class User < ActiveRecord::Base
+    define_easy_dates do
+      format_for :created_at, :updated_at
+    end
+  end
+  
+The format_for method takes multiple options. For example:
+
+  class User < ActiveRecord::Base
+    define_easy_dates do
+      format_for :updated_at, :signup_date, :test_date                      # Array
+      format_for :created_at, :format => "%H:%M"                            # Uses strftime settings, :format can be used on arrays too
+      format_for :updated_at, :format => "%H:%M%P", :as => "updated_time"   # :as will allow you to set your own name for your required format (:as does not work on an array of time columns like in the first example)
+    end
+  end
+  
+Once your dates have been defined you can access the new formatted date as follows:
+
+  @user = User.first
+  
+  # Example 1 / format_for :updated_at, :signup_date, :test_date
+  @user.formatted_created_at
+  @user.formatted_signup_date
+  @user.formatted_test_date
+  
+  # Example 2 / format_for :created_at, :format => "%H:%M"   
+  @user.formated_created_at
+  
+  # Example 3 / format_for :updated_at, :format => "%H:%M%P", :as => "updated_time"
+  @user.updated_time
+
+In short:
+
+Set your own name
+  :as => "new_name
+
+Set your own format
+  :format => "strftime format"
+  
+Convenience method "formatted_column_name" is created, unless specified with :as
+
+== Contact
+
+Follow me on twitter: http://twitter.com/ryan_za
+
+Email: ryan *at* platform45.com
+
+== License
+
+Copyright (c) 2009 Platform45
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
