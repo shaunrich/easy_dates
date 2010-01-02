@@ -37,7 +37,7 @@ Once your dates have been defined you can access the new formatted date as follo
   @user = User.first
   
   # Example 1 / format_for :updated_at, :signup_date, :test_date
-  @user.formatted_created_at
+  @user.formatted_updated_at
   @user.formatted_signup_date
   @user.formatted_test_date
   

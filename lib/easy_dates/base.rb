@@ -31,7 +31,7 @@ module EasyDates
       def generate_method(name, chosen_name, format)
         class_eval <<-EOL
           def #{chosen_name}
-            #{name}.strftime("#{format}")
+            #{name}.nil? ? nil : #{name}.strftime("#{format}")
           end
         EOL
       end
