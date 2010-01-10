@@ -23,7 +23,7 @@ module EasyDates
         end
                 
         names.each do |name|
-          chosen_name = names.count == 1 ? (options[:as] || "formatted_#{name}") : "formatted_#{name}"
+          chosen_name = names.size == 1 ? (options[:as] || "formatted_#{name}") : "formatted_#{name}"
           generate_method(name, chosen_name, format) unless name.equal?(:timestamps)
         end
       end
